@@ -1,0 +1,15 @@
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\bin\Debug\net6.0\eSya.EmailEngine.IF.deps.json
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\bin\Debug\net6.0\eSya.EmailEngine.IF.dll
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\bin\Debug\net6.0\eSya.EmailEngine.IF.pdb
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\bin\Debug\net6.0\eSya.EmailEngine.DO.dll
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\bin\Debug\net6.0\eSya.EmailEngine.DO.pdb
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\obj\Debug\net6.0\eSya.EmailEngine.IF.csproj.AssemblyReference.cache
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\obj\Debug\net6.0\eSya.EmailEngine.IF.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\obj\Debug\net6.0\eSya.EmailEngine.IF.AssemblyInfoInputs.cache
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\obj\Debug\net6.0\eSya.EmailEngine.IF.AssemblyInfo.cs
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\obj\Debug\net6.0\eSya.EmailEngine.IF.csproj.CoreCompileInputs.cache
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\obj\Debug\net6.0\eSya.EmailEngine.IF.csproj.CopyComplete
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\obj\Debug\net6.0\eSya.EmailEngine.IF.dll
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\obj\Debug\net6.0\refint\eSya.EmailEngine.IF.dll
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\obj\Debug\net6.0\eSya.EmailEngine.IF.pdb
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.IF\eSya.EmailEngine.IF\obj\Debug\net6.0\ref\eSya.EmailEngine.IF.dll

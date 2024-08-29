@@ -1,0 +1,11 @@
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DO\eSya.EmailEngine.DO\bin\Debug\net6.0\eSya.EmailEngine.DO.deps.json
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DO\eSya.EmailEngine.DO\bin\Debug\net6.0\eSya.EmailEngine.DO.dll
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DO\eSya.EmailEngine.DO\bin\Debug\net6.0\eSya.EmailEngine.DO.pdb
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DO\eSya.EmailEngine.DO\obj\Debug\net6.0\eSya.EmailEngine.DO.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DO\eSya.EmailEngine.DO\obj\Debug\net6.0\eSya.EmailEngine.DO.AssemblyInfoInputs.cache
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DO\eSya.EmailEngine.DO\obj\Debug\net6.0\eSya.EmailEngine.DO.AssemblyInfo.cs
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DO\eSya.EmailEngine.DO\obj\Debug\net6.0\eSya.EmailEngine.DO.csproj.CoreCompileInputs.cache
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DO\eSya.EmailEngine.DO\obj\Debug\net6.0\eSya.EmailEngine.DO.dll
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DO\eSya.EmailEngine.DO\obj\Debug\net6.0\refint\eSya.EmailEngine.DO.dll
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DO\eSya.EmailEngine.DO\obj\Debug\net6.0\eSya.EmailEngine.DO.pdb
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DO\eSya.EmailEngine.DO\obj\Debug\net6.0\ref\eSya.EmailEngine.DO.dll

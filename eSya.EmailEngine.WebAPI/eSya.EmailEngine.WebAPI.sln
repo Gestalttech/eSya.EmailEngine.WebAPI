@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eSya.EmailEngine.WebAPI", "eSya.EmailEngine.WebAPI\eSya.EmailEngine.WebAPI.csproj", "{6158A74E-5CC9-4758-B73D-A62A3ADD7D82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eSya.EmailEngine.DO", "..\eSya.EmailEngine.DO\eSya.EmailEngine.DO\eSya.EmailEngine.DO.csproj", "{8E36A2B3-B1F8-4B0B-925F-483C4A0B3D66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eSya.EmailEngine.DL", "..\eSya.EmailEngine.DL\eSya.EmailEngine.DL\eSya.EmailEngine.DL.csproj", "{C015CCD6-D5EE-4038-9D1B-263F7DFEFCFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eSya.EmailEngine.IF", "..\eSya.EmailEngine.IF\eSya.EmailEngine.IF\eSya.EmailEngine.IF.csproj", "{67A8D961-F282-4956-8D31-1D953222FED1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6158A74E-5CC9-4758-B73D-A62A3ADD7D82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6158A74E-5CC9-4758-B73D-A62A3ADD7D82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6158A74E-5CC9-4758-B73D-A62A3ADD7D82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6158A74E-5CC9-4758-B73D-A62A3ADD7D82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E36A2B3-B1F8-4B0B-925F-483C4A0B3D66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E36A2B3-B1F8-4B0B-925F-483C4A0B3D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E36A2B3-B1F8-4B0B-925F-483C4A0B3D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E36A2B3-B1F8-4B0B-925F-483C4A0B3D66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C015CCD6-D5EE-4038-9D1B-263F7DFEFCFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C015CCD6-D5EE-4038-9D1B-263F7DFEFCFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C015CCD6-D5EE-4038-9D1B-263F7DFEFCFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C015CCD6-D5EE-4038-9D1B-263F7DFEFCFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67A8D961-F282-4956-8D31-1D953222FED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67A8D961-F282-4956-8D31-1D953222FED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67A8D961-F282-4956-8D31-1D953222FED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67A8D961-F282-4956-8D31-1D953222FED1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59F5338A-4F6C-4D57-9961-582544489694}
+	EndGlobalSection
+EndGlobal
