@@ -5,6 +5,11 @@ namespace eSya.EmailEngine.DL.Entities
 {
     public partial class GtEcemah
     {
+        public GtEcemah()
+        {
+            GtEcemads = new HashSet<GtEcemad>();
+            GtEcemars = new HashSet<GtEcemar>();
+        }
         public string EmailTempId { get; set; } = null!;
         public int FormId { get; set; }
         public string EmailTempDesc { get; set; } = null!;
@@ -18,5 +23,8 @@ namespace eSya.EmailEngine.DL.Entities
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public string? ModifiedTerminal { get; set; }
+
+        public virtual ICollection<GtEcemad> GtEcemads { get; set; }
+        public virtual ICollection<GtEcemar> GtEcemars { get; set; }
     }
 }

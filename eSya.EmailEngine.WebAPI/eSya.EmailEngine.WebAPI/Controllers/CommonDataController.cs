@@ -1,4 +1,5 @@
-﻿using eSya.EmailEngine.IF;
+﻿using eSya.EmailEngine.DL.Repository;
+using eSya.EmailEngine.IF;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,18 @@ namespace eSya.EmailEngine.WebAPI.Controllers
         public async Task<IActionResult> GetBusinessKey()
         {
             var ds = await _commondataRepository.GetBusinessKey();
+            return Ok(ds);
+        }
+
+        /// <summary>
+        /// Get Form Detail.
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> GetFormDetails()
+        {
+            var ds = await _commondataRepository.GetFormDetails();
             return Ok(ds);
         }
     }

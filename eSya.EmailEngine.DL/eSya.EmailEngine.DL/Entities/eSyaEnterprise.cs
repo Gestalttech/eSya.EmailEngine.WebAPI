@@ -23,6 +23,7 @@ namespace eSya.EmailEngine.DL.Entities
         public virtual DbSet<GtEcemah> GtEcemahs { get; set; } = null!;
         public virtual DbSet<GtEcemar> GtEcemars { get; set; } = null!;
         public virtual DbSet<GtEcemav> GtEcemavs { get; set; } = null!;
+        public virtual DbSet<GtEcfmfd> GtEcfmfds { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -223,6 +224,37 @@ namespace eSya.EmailEngine.DL.Entities
                 entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
 
                 entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<GtEcfmfd>(entity =>
+            {
+                entity.HasKey(e => e.FormId);
+
+                entity.ToTable("GT_ECFMFD");
+
+                entity.Property(e => e.FormId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ControllerName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.FormCode)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FormName).HasMaxLength(50);
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.ToolTip).HasMaxLength(250);
             });
 
             OnModelCreatingPartial(modelBuilder);

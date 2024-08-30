@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using eSya.EmailEngine.DL.Entities;
+using Microsoft.EntityFrameworkCore;
+using eSya.EmailEngine.DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

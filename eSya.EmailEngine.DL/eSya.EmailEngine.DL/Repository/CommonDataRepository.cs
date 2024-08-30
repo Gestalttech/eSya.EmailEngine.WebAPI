@@ -34,5 +34,27 @@ namespace eSya.EmailEngine.DL.Repository
                 throw ex;
             }
         }
+
+        public async Task<List<DO_Forms>> GetFormDetails()
+        {
+            try
+            {
+                using (eSyaEnterprise db = new eSyaEnterprise())
+                {
+                    var result = db.GtEcfmfds
+                                  .Where(w => w.ActiveStatus)
+                                  .Select(r => new DO_Forms
+                                  {
+                                      FormID = r.FormId,
+                                      FormName = r.FormName
+                                  }).OrderBy(o => o.FormName).ToListAsync();
+                    return await result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

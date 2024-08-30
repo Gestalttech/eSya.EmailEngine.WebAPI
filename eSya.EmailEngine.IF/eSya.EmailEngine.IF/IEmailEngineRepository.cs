@@ -22,5 +22,16 @@ namespace eSya.EmailEngine.IF
 
         #endregion Email Variable
 
+        #region SMS Information
+        Task<List<DO_Forms>> GetExistingFormsFromEmailHeader();
+        Task<List<DO_EmailHeader>> GetEmailHeaderInformationByFormId(int formId);
+
+        Task<DO_EmailHeader> GetSMSHeaderInformationByEmailTempId(string emailTempId);
+
+        Task<DO_ReturnParameter> InsertIntoEmailHeader(DO_EmailHeader obj);
+
+        Task<DO_ReturnParameter> UpdateEmailHeader(DO_EmailHeader obj);
+
+        #endregion
     }
 }
