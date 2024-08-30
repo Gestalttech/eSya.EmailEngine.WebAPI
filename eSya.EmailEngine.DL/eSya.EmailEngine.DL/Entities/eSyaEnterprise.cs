@@ -8,7 +8,6 @@ namespace eSya.EmailEngine.DL.Entities
     public partial class eSyaEnterprise : DbContext
     {
         public static string _connString = "";
-
         public eSyaEnterprise()
         {
         }
@@ -20,6 +19,10 @@ namespace eSya.EmailEngine.DL.Entities
 
         public virtual DbSet<GtEcapcd> GtEcapcds { get; set; } = null!;
         public virtual DbSet<GtEcbsln> GtEcbslns { get; set; } = null!;
+        public virtual DbSet<GtEcemad> GtEcemads { get; set; } = null!;
+        public virtual DbSet<GtEcemah> GtEcemahs { get; set; } = null!;
+        public virtual DbSet<GtEcemar> GtEcemars { get; set; } = null!;
+        public virtual DbSet<GtEcemav> GtEcemavs { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -103,6 +106,123 @@ namespace eSya.EmailEngine.DL.Entities
                     .HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.TorealCurrency).HasColumnName("TORealCurrency");
+            });
+
+            modelBuilder.Entity<GtEcemad>(entity =>
+            {
+                entity.HasKey(e => new { e.EmailTempId, e.ParameterId });
+
+                entity.ToTable("GT_ECEMAD");
+
+                entity.Property(e => e.EmailTempId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("EmailTempID");
+
+                entity.Property(e => e.ParameterId).HasColumnName("ParameterID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<GtEcemah>(entity =>
+            {
+                entity.HasKey(e => e.EmailTempId);
+
+                entity.ToTable("GT_ECEMAH");
+
+                entity.Property(e => e.EmailTempId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("EmailTempID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.EmailSubject).HasMaxLength(250);
+
+                entity.Property(e => e.EmailTempDesc).HasMaxLength(100);
+
+                entity.Property(e => e.FormId).HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<GtEcemar>(entity =>
+            {
+                entity.HasKey(e => new { e.BusinessKey, e.EmailTempId, e.EmailId });
+
+                entity.ToTable("GT_ECEMAR");
+
+                entity.Property(e => e.EmailTempId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("EmailTempID");
+
+                entity.Property(e => e.EmailId)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("EmailID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.RecipientName).HasMaxLength(50);
+
+                entity.Property(e => e.Remarks).HasMaxLength(25);
+            });
+
+            modelBuilder.Entity<GtEcemav>(entity =>
+            {
+                entity.HasKey(e => e.Emavariable);
+
+                entity.ToTable("GT_ECEMAV");
+
+                entity.Property(e => e.Emavariable)
+                    .HasMaxLength(6)
+                    .IsUnicode(false)
+                    .HasColumnName("EMAVariable");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.Emacomponent)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("EMAComponent");
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
             });
 
             OnModelCreatingPartial(modelBuilder);

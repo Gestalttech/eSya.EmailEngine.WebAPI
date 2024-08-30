@@ -51,7 +51,7 @@ builder.Services.AddLocalization();
 
 builder.Services.AddScoped<ICommonDataRepository, CommonDataRepository>();
 builder.Services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
-
+builder.Services.AddScoped<IEmailEngineRepository, EmailEngineRepository>();
 
 
 builder.Services.AddControllers();
