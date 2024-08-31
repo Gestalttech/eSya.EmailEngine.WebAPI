@@ -242,6 +242,7 @@ namespace eSya.EmailEngine.DL.Repository
                        .Select(r => new DO_EmailHeader
                        {
                            EmailTempid = r.EmailTempId,
+                           FormId = r.FormId,
                            EmailTempDesc = r.EmailTempDesc,
                            EmailSubject = r.EmailSubject,
                            EmailBody = r.EmailBody,
