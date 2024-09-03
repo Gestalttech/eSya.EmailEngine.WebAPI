@@ -26,7 +26,7 @@ namespace eSya.EmailEngine.IF
         Task<List<DO_Forms>> GetExistingFormsFromEmailHeader();
         Task<List<DO_EmailHeader>> GetEmailHeaderInformationByFormId(int formId);
 
-        Task<DO_EmailHeader> GetSMSHeaderInformationByEmailTempId(string emailTempId);
+        Task<DO_EmailHeader> GetEmailHeaderInformationByEmailId(string emailTempId);
 
         Task<DO_ReturnParameter> InsertIntoEmailHeader(DO_EmailHeader obj);
 

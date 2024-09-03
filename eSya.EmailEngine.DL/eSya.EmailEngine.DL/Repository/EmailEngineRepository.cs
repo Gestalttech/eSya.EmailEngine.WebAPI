@@ -259,7 +259,7 @@ namespace eSya.EmailEngine.DL.Repository
             }
         }
 
-        public async Task<DO_EmailHeader> GetSMSHeaderInformationByEmailTempId(string emailTempId)
+        public async Task<DO_EmailHeader> GetEmailHeaderInformationByEmailId(string emailTempId)
         {
             try
             {
@@ -273,6 +273,7 @@ namespace eSya.EmailEngine.DL.Repository
                              EmailTempDesc = r.EmailTempDesc,
                              EmailSubject = r.EmailSubject,
                              EmailBody = r.EmailBody,
+                             IsVariable = r.IsVariable,
                              IsAttachmentReqd = r.IsAttachmentReqd,
                              ActiveStatus = r.ActiveStatus,
                              l_EmailParameter = r.GtEcemads.Select(p => new DO_eSyaParameter
@@ -316,6 +317,7 @@ namespace eSya.EmailEngine.DL.Repository
                             EmailTempDesc = obj.EmailTempDesc,
                             EmailSubject = obj.EmailSubject,
                             EmailBody = obj.EmailBody,
+                            IsVariable = obj.IsVariable,
                             IsAttachmentReqd = obj.IsAttachmentReqd,
                             ActiveStatus = obj.ActiveStatus,
                             CreatedBy = obj.UserID,
@@ -384,6 +386,7 @@ namespace eSya.EmailEngine.DL.Repository
                         sm_sh.EmailTempDesc = obj.EmailTempDesc;
                         sm_sh.EmailSubject = obj.EmailSubject;
                         sm_sh.EmailBody = obj.EmailBody;
+                        sm_sh.IsVariable = obj.IsVariable;
                         sm_sh.IsAttachmentReqd = obj.IsAttachmentReqd;
                         sm_sh.ActiveStatus = obj.ActiveStatus;
                         sm_sh.ModifiedBy = obj.UserID;

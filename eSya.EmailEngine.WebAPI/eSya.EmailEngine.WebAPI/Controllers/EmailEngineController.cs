@@ -109,9 +109,9 @@ namespace eSya.SMSEngine.WebAPI.Controllers
         /// <param name="smsId"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetSMSHeaderInformationByEmailTempId(string emailTempId)
+        public async Task<IActionResult> GetEmailHeaderInformationByEmailId(string emailTempId)
         {
-            var sm_sh = await _EmailEngineRepository.GetSMSHeaderInformationByEmailTempId(emailTempId);
+            var sm_sh = await _EmailEngineRepository.GetEmailHeaderInformationByEmailId(emailTempId);
             return Ok(sm_sh);
         }
 
