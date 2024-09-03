@@ -24,6 +24,7 @@ namespace eSya.EmailEngine.DL.Entities
         public virtual DbSet<GtEcemar> GtEcemars { get; set; } = null!;
         public virtual DbSet<GtEcemav> GtEcemavs { get; set; } = null!;
         public virtual DbSet<GtEcfmfd> GtEcfmfds { get; set; } = null!;
+        public virtual DbSet<GtEcfmpa> GtEcfmpas { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -255,6 +256,31 @@ namespace eSya.EmailEngine.DL.Entities
                 entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
 
                 entity.Property(e => e.ToolTip).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<GtEcfmpa>(entity =>
+            {
+                entity.HasKey(e => new { e.FormId, e.ParameterId });
+
+                entity.ToTable("GT_ECFMPA");
+
+                entity.Property(e => e.FormId).HasColumnName("FormID");
+
+                entity.Property(e => e.ParameterId).HasColumnName("ParameterID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+
+                entity.HasOne(d => d.Form)
+                    .WithMany(p => p.GtEcfmpas)
+                    .HasForeignKey(d => d.FormId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_GT_ECFMPA_GT_ECFMFD");
             });
 
             OnModelCreatingPartial(modelBuilder);

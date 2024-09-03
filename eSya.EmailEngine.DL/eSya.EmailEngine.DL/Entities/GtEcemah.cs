@@ -23,7 +23,6 @@ namespace eSya.EmailEngine.DL.Entities
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public string? ModifiedTerminal { get; set; }
-
         public virtual ICollection<GtEcemad> GtEcemads { get; set; }
         public virtual ICollection<GtEcemar> GtEcemars { get; set; }
     }

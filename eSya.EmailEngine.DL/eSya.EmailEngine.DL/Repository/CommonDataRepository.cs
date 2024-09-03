@@ -1,5 +1,6 @@
 ﻿using eSya.EmailEngine.DL.Entities;
 using eSya.EmailEngine.DO;
+using eSya.EmailEngine.DO.StaticVariables;
 using eSya.EmailEngine.IF;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -41,13 +42,29 @@ namespace eSya.EmailEngine.DL.Repository
             {
                 using (eSyaEnterprise db = new eSyaEnterprise())
                 {
+                    //var result = db.GtEcfmfds
+                    //              .Where(w => w.ActiveStatus)
+                    //              .Select(r => new DO_Forms
+                    //              {
+                    //                  FormID = r.FormId,
+                    //                  FormName = r.FormName
+                    //              }).OrderBy(o => o.FormName).ToListAsync();
+                    //return await result;
+
                     var result = db.GtEcfmfds
-                                  .Where(w => w.ActiveStatus)
+                        .Join(db.GtEcfmpas,
+                            f => f.FormId,
+                            p => p.FormId,
+                            (f, p) => new { f, p })
+                       .Where(w => w.f.ActiveStatus
+                                  && w.p.ParameterId == ParameterIdValues.Form_isEmailIntegration
+                                  && w.p.ActiveStatus)
                                   .Select(r => new DO_Forms
                                   {
-                                      FormID = r.FormId,
-                                      FormName = r.FormName
+                                      FormID = r.f.FormId,
+                                      FormName = r.f.FormName
                                   }).OrderBy(o => o.FormName).ToListAsync();
+                    
                     return await result;
                 }
             }
