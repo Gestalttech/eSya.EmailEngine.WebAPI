@@ -11,6 +11,7 @@ namespace eSya.EmailEngine.DL.Entities
             GtEcemars = new HashSet<GtEcemar>();
         }
         public string EmailTempId { get; set; } = null!;
+        public int EmailType { get; set; }
         public int FormId { get; set; }
         public string EmailTempDesc { get; set; } = null!;
         public string EmailSubject { get; set; } = null!;
@@ -26,6 +27,5 @@ namespace eSya.EmailEngine.DL.Entities
         public string? ModifiedTerminal { get; set; }
         public virtual ICollection<GtEcemad> GtEcemads { get; set; }
         public virtual ICollection<GtEcemar> GtEcemars { get; set; }
-
     }
 }

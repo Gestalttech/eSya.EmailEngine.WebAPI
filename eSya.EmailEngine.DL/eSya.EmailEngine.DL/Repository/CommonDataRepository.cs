@@ -73,5 +73,28 @@ namespace eSya.EmailEngine.DL.Repository
                 throw ex;
             }
         }
+
+        public async Task<List<DO_ApplicationCodes>> GetApplicationCodesByCodeType(int codeType)
+        {
+            try
+            {
+                using (var db = new eSyaEnterprise())
+                {
+                    var ds = db.GtEcapcds
+                        .Where(w => w.CodeType == codeType && w.ActiveStatus)
+                        .Select(r => new DO_ApplicationCodes
+                        {
+                            ApplicationCode = r.ApplicationCode,
+                            CodeDesc = r.CodeDesc
+                        }).OrderBy(o => o.CodeDesc).ToListAsync();
+
+                    return await ds;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

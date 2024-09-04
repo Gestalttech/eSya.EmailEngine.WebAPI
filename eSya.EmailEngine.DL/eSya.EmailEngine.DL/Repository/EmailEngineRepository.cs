@@ -270,6 +270,7 @@ namespace eSya.EmailEngine.DL.Repository
                          .Select(r => new DO_EmailHeader
                          {
                              EmailTempid = r.EmailTempId,
+                             EmailType = r.EmailType,
                              EmailTempDesc = r.EmailTempDesc,
                              EmailSubject = r.EmailSubject,
                              EmailBody = r.EmailBody,
@@ -313,6 +314,7 @@ namespace eSya.EmailEngine.DL.Repository
                         var sm_sh = new GtEcemah
                         {
                             EmailTempId = emailTempId,
+                            EmailType = obj.EmailType,
                             FormId = obj.FormId,
                             EmailTempDesc = obj.EmailTempDesc,
                             EmailSubject = obj.EmailSubject,
@@ -383,6 +385,7 @@ namespace eSya.EmailEngine.DL.Repository
                             return new DO_ReturnParameter() { Status = false, StatusCode = "W0117", Message = string.Format(_localizer[name: "W0117"]) };
                         }
 
+                        sm_sh.EmailType = obj.EmailType;
                         sm_sh.EmailTempDesc = obj.EmailTempDesc;
                         sm_sh.EmailSubject = obj.EmailSubject;
                         sm_sh.EmailBody = obj.EmailBody;

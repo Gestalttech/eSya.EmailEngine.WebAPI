@@ -7,6 +7,7 @@ namespace eSya.EmailEngine.DO
     public class DO_EmailHeader
     {
         public string EmailTempid { get; set; }
+        public int EmailType { get; set; }
         public int FormId { get; set; }
         public string EmailTempDesc { get; set; }
         public string EmailSubject { get; set; }

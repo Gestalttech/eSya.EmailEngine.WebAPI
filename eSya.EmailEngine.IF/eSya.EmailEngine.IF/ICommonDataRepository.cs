@@ -12,5 +12,7 @@ namespace eSya.EmailEngine.IF
         Task<List<DO_BusinessLocation>> GetBusinessKey();
 
         Task<List<DO_Forms>> GetFormDetails();
+
+        Task<List<DO_ApplicationCodes>> GetApplicationCodesByCodeType(int codeType);
     }
 }
