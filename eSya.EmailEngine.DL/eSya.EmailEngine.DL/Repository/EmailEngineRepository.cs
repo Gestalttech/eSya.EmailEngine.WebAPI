@@ -277,7 +277,12 @@ namespace eSya.EmailEngine.DL.Repository
                              IsVariable = r.IsVariable,
                              IsAttachmentReqd = r.IsAttachmentReqd,
                              ActiveStatus = r.ActiveStatus,
-                             l_EmailParameter = r.GtEcemads.Select(p => new DO_eSyaParameter
+                             //l_EmailParameter = r.GtEcemads.Select(p => new DO_eSyaParameter
+                             //{
+                             //    ParameterID = p.ParameterId,
+                             //    ParmAction = p.ParmAction
+                             //}).ToList()
+                             l_EmailParameter = db.GtEcemads.Where(x=>x.EmailTempId==emailTempId).Select(p => new DO_eSyaParameter
                              {
                                  ParameterID = p.ParameterId,
                                  ParmAction = p.ParmAction

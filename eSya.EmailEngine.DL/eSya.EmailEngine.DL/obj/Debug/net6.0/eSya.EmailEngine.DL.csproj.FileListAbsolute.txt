@@ -17,3 +17,4 @@ D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DL\eSya.Em
 D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DL\eSya.EmailEngine.DL\obj\Debug\net6.0\ref\eSya.EmailEngine.DL.dll
 D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DL\eSya.EmailEngine.DL\bin\Debug\net6.0\eSya.EmailEngine.DL.runtimeconfig.json
 D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DL\eSya.EmailEngine.DL\obj\Debug\net6.0\eSya.EmailEngine.DL.genruntimeconfig.cache
+D:\Projects\eSyaProjects2022\eSya.EmailEngine.WebAPI\eSya.EmailEngine.DL\eSya.EmailEngine.DL\obj\Debug\net6.0\eSya.EmailEngine.DL.sourcelink.json
