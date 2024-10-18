@@ -5,6 +5,11 @@ namespace eSya.EmailEngine.DL.Entities
 {
     public partial class GtEcbsln
     {
+        public GtEcbsln()
+        {
+            GtEcpabls = new HashSet<GtEcpabl>();
+        }
+
         public int BusinessId { get; set; }
         public int LocationId { get; set; }
         public int BusinessKey { get; set; }
@@ -25,5 +30,7 @@ namespace eSya.EmailEngine.DL.Entities
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public string? ModifiedTerminal { get; set; }
+
+        public virtual ICollection<GtEcpabl> GtEcpabls { get; set; }
     }
 }

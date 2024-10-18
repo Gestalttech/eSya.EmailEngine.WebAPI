@@ -33,5 +33,16 @@ namespace eSya.EmailEngine.IF
         Task<DO_ReturnParameter> UpdateEmailHeader(DO_EmailHeader obj);
 
         #endregion
+
+        #region Email Recipient
+        Task<List<DO_EmailHeader>> GetEmailHeaderForRecipientByFormIdandParamId(int formId, int parameterId);
+        Task<List<DO_EmailRecipient>> GetEmailRecipientByBusinessKeyAndEmailTempId(int businessKey, string emailTempId);
+        Task<DO_ReturnParameter> InsertIntoEmailRecipient(DO_EmailRecipient obj);
+        Task<DO_ReturnParameter> UpdateEmailRecipient(DO_EmailRecipient obj);
+        #endregion
+        #region Manage Email Location Wise
+        Task<List<DO_EmailHeader>> GetEmailInformationFormLocationWise(int businessKey, int formId);
+        Task<DO_ReturnParameter> InsertOrUpdateEmailInformationFLW(List<DO_BusinessFormEmailLink> obj);
+        #endregion
     }
 }

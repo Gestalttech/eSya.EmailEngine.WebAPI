@@ -33,4 +33,14 @@ namespace eSya.EmailEngine.DO
         public string FormId1 { get; set; }
         public string TerminalID { get; set; }
     }
+    public class DO_BusinessFormEmailLink
+    {
+        public int BusinessKey { get; set; }
+        public int FormId { get; set; }
+        public string EmailTempId { get; set; } = null!;
+        public bool ActiveStatus { get; set; }
+        public int UserID { get; set; }
+        public string FormId1 { get; set; }
+        public string TerminalID { get; set; }
+    }
 }

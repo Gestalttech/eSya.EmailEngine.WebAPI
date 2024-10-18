@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Remove="Class1.cs" />
+    <Compile Remove="DO_EmailRecipient.cs" />
   </ItemGroup>
 
 </Project>

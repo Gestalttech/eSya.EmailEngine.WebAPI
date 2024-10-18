@@ -448,5 +448,252 @@ namespace eSya.EmailEngine.DL.Repository
             }
         }
         #endregion Email Template
+
+        #region Email Recipient
+
+        public async Task<List<DO_EmailHeader>> GetEmailHeaderForRecipientByFormIdandParamId(int formId, int parameterId)
+        {
+            try
+            {
+                using (var db = new eSyaEnterprise())
+                {
+                    var ds = db.GtEcemads
+                        .Where(w => w.ParameterId == parameterId && w.ActiveStatus && w.ParmAction)
+                        .Join(db.GtEcemahs.Where(x=>x.FormId==formId && x.ActiveStatus),
+                        p => new {p.EmailTempId},
+                        e => new {e.EmailTempId},
+                        (p,e) => new {p,e})
+                        
+                         .Select(r => new DO_EmailHeader
+                         {
+                             EmailTempid = r.e.EmailTempId,
+                             EmailType=r.e.EmailType,
+                             EmailTempDesc=r.e.EmailTempDesc,
+                             ActiveStatus = r.e.ActiveStatus
+                         }).OrderBy(o => o.EmailTempid).ToListAsync();
+
+                    return await ds;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<List<DO_EmailRecipient>> GetEmailRecipientByBusinessKeyAndEmailTempId(int businessKey, string emailTempId)
+        {
+            try
+            {
+                using (var db = new eSyaEnterprise())
+                {
+                    var ds = db.GtEcemars
+                        .Where(w => w.BusinessKey == businessKey && w.EmailTempId == emailTempId)
+                         .Select(r => new DO_EmailRecipient
+                         {
+                             EmailTempid = r.EmailTempId,
+                             Emailid = r.EmailId,
+                             RecipientName = r.RecipientName,
+                             Remarks = r.Remarks,
+                             ActiveStatus = r.ActiveStatus
+                         }).OrderBy(o => o.RecipientName).ToListAsync();
+
+                    return await ds;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<DO_ReturnParameter> InsertIntoEmailRecipient(DO_EmailRecipient obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        bool is_emailtempExist = db.GtEcemars.Any(a => a.BusinessKey == obj.BusinessKey && a.EmailTempId.Trim() == obj.EmailTempid.Trim() && a.EmailId == obj.Emailid);
+                        if (is_emailtempExist)
+                        {
+                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0069", Message = string.Format(_localizer[name: "W0069"]) };
+                        }
+
+                        var em_sr = new GtEcemar
+                        {
+                            BusinessKey = obj.BusinessKey,
+                            EmailTempId = obj.EmailTempid,
+                            EmailId = obj.Emailid,
+                            RecipientName = obj.RecipientName,
+                            Remarks = obj.Remarks,
+                            ActiveStatus = obj.ActiveStatus,
+                            FormId = obj.FormId1,
+                            CreatedBy = obj.UserID,
+                            CreatedOn = DateTime.Now,
+                            CreatedTerminal = obj.TerminalID
+
+                        };
+                        db.GtEcemars.Add(em_sr);
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+
+                        return new DO_ReturnParameter() { Status = true, StatusCode = "S0001", Message = string.Format(_localizer[name: "S0001"]) };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public async Task<DO_ReturnParameter> UpdateEmailRecipient(DO_EmailRecipient obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        GtEcemar email_sr = db.GtEcemars.Where(a => a.BusinessKey == obj.BusinessKey && a.EmailTempId.Trim() == obj.EmailTempid.Trim() && a.EmailId == obj.Emailid).FirstOrDefault();
+                        if (email_sr == null)
+                        {
+                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0070", Message = string.Format(_localizer[name: "W0070"]) };
+                        }
+
+                        email_sr.RecipientName = obj.RecipientName;
+                        email_sr.Remarks = obj.Remarks;
+                        email_sr.ActiveStatus = obj.ActiveStatus;
+                        email_sr.ModifiedBy = obj.UserID;
+                        email_sr.ModifiedOn = DateTime.Now;
+                        email_sr.ModifiedTerminal = obj.TerminalID;
+
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+
+                        return new DO_ReturnParameter() { Status = true, StatusCode = "S0002", Message = string.Format(_localizer[name: "S0002"]) };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+
+        #endregion SMS Recipient
+
+        #region Manage Email Location Wise
+
+        public async Task<List<DO_EmailHeader>> GetEmailInformationFormLocationWise(int businessKey, int formId)
+        {
+            try
+            {
+                using (var db = new eSyaEnterprise())
+                {
+
+                    var ds = await db.GtEcemahs
+                       .Where(w => w.FormId == formId)
+                       .Select(r => new DO_EmailHeader
+                       {
+                           EmailTempid = r.EmailTempId,
+                           EmailTempDesc = r.EmailTempDesc,
+                           ActiveStatus = r.ActiveStatus,
+                           FormId = r.FormId,
+                       }).OrderBy(o => o.EmailTempid).ToListAsync();
+
+                    foreach (var obj in ds)
+                    {
+                        GtEcemlo pf = db.GtEcemlos.Where(x => x.BusinessKey == businessKey && x.FormId == obj.FormId && x.EmailTempId==obj.EmailTempid).FirstOrDefault();
+                        if (pf != null)
+                        {
+                            obj.ActiveStatus = pf.ActiveStatus;
+                        }
+                        else
+                        {
+                            obj.ActiveStatus = false;
+
+                        }
+                    }
+                    return ds;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<DO_ReturnParameter> InsertOrUpdateEmailInformationFLW(List<DO_BusinessFormEmailLink> obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (var email_loc in obj)
+                        {
+                            GtEcemlo Emailloc = db.GtEcemlos.Where(x => x.BusinessKey == email_loc.BusinessKey && x.FormId == email_loc.FormId && x.EmailTempId == email_loc.EmailTempId).FirstOrDefault();
+                            if (Emailloc != null)
+                            {
+                                
+                                Emailloc.ActiveStatus = email_loc.ActiveStatus;
+                                Emailloc.ModifiedBy = email_loc.UserID;
+                                Emailloc.ModifiedOn = System.DateTime.Now;
+                                Emailloc.ModifiedTerminal = email_loc.TerminalID;
+                            }
+                            else
+                            {
+                                var Emailloc1 = new GtEcemlo
+                                {
+                                    BusinessKey = email_loc.BusinessKey,
+                                    FormId = email_loc.FormId,
+                                    EmailTempId = email_loc.EmailTempId,
+                                    ActiveStatus = email_loc.ActiveStatus,
+                                    CreatedBy = email_loc.UserID,
+                                    CreatedOn = System.DateTime.Now,
+                                    CreatedTerminal = email_loc.TerminalID
+                                };
+                                db.GtEcemlos.Add(Emailloc1);
+                            }
+                            await db.SaveChangesAsync();
+                        }
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, StatusCode = "S0002", Message = string.Format(_localizer[name: "S0002"]) };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+        #endregion Manage Email Location Wise
     }
 }

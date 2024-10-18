@@ -139,5 +139,48 @@ namespace eSya.SMSEngine.WebAPI.Controllers
             return Ok(msg);
 
         }
+        #region Email Recipient
+        [HttpGet]
+        public async Task<IActionResult> GetEmailHeaderForRecipientByFormIdandParamId(int formId, int parameterId)
+        {
+            var sm_sh = await _EmailEngineRepository.GetEmailHeaderForRecipientByFormIdandParamId(formId, parameterId);
+            return Ok(sm_sh);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetEmailRecipientByBusinessKeyAndEmailTempId(int businessKey, string emailTempId)
+        {
+            var sm_sh = await _EmailEngineRepository.GetEmailRecipientByBusinessKeyAndEmailTempId(businessKey, emailTempId);
+            return Ok(sm_sh);
+        }
+        [HttpPost]
+        public async Task<IActionResult> InsertIntoEmailRecipient(DO_EmailRecipient obj)
+        {
+            var msg = await _EmailEngineRepository.InsertIntoEmailRecipient(obj);
+            return Ok(msg);
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateEmailRecipient(DO_EmailRecipient obj)
+        {
+            var msg = await _EmailEngineRepository.UpdateEmailRecipient(obj);
+            return Ok(msg);
+
+        }
+        #endregion
+        #region Manage Email Location Wise
+        [HttpGet]
+        public async Task<IActionResult> GetEmailInformationFormLocationWise(int businessKey, int formId)
+        {
+            var sm_sh = await _EmailEngineRepository.GetEmailInformationFormLocationWise(businessKey, formId);
+            return Ok(sm_sh);
+        }
+        [HttpPost]
+        public async Task<IActionResult> InsertOrUpdateEmailInformationFLW(List<DO_BusinessFormEmailLink> obj)
+        {
+            var msg = await _EmailEngineRepository.InsertOrUpdateEmailInformationFLW(obj);
+            return Ok(msg);
+
+        }
+        #endregion
     }
 }

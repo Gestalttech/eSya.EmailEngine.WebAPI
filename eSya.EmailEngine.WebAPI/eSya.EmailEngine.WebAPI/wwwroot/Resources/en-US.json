@@ -1,6 +1,6 @@
 {
-  "W0069": "",
-  
+  "W0069": "Email Template Id is already Exist for this Email ID and selected location",
+  "W0070": "Email Template Id not Exist",
 
 
   "S0001": "Saved Sucessfully",

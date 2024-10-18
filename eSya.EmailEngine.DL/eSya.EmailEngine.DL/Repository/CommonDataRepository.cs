@@ -42,15 +42,7 @@ namespace eSya.EmailEngine.DL.Repository
             {
                 using (eSyaEnterprise db = new eSyaEnterprise())
                 {
-                    //var result = db.GtEcfmfds
-                    //              .Where(w => w.ActiveStatus)
-                    //              .Select(r => new DO_Forms
-                    //              {
-                    //                  FormID = r.FormId,
-                    //                  FormName = r.FormName
-                    //              }).OrderBy(o => o.FormName).ToListAsync();
-                    //return await result;
-
+                   
                     var result = db.GtEcfmfds
                         .Join(db.GtEcfmpas,
                             f => f.FormId,
@@ -62,7 +54,8 @@ namespace eSya.EmailEngine.DL.Repository
                                   .Select(r => new DO_Forms
                                   {
                                       FormID = r.f.FormId,
-                                      FormName = r.f.FormName
+                                      FormName = r.f.FormName,
+                                      FormCode=r.f.FormCode,
                                   }).OrderBy(o => o.FormName).ToListAsync();
                     
                     return await result;
@@ -89,6 +82,33 @@ namespace eSya.EmailEngine.DL.Repository
                         }).OrderBy(o => o.CodeDesc).ToListAsync();
 
                     return await ds;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<List<DO_BusinessLocation>> GetBusinessKeyByEmailIntegration()
+        {
+            try
+            {
+                using (var db = new eSyaEnterprise())
+                {
+                    var bk = db.GtEcbslns.Join(db.GtEcpabls,
+                        f => f.BusinessKey,
+                        p => p.BusinessKey,
+                        (f, p) => new { f, p })
+                        .Where(w => w.f.ActiveStatus && w.p.ParameterId == ParameterIdValues.Location_isEmailIntegration
+                                  && w.p.ParmAction && w.p.ActiveStatus)
+                        .Select(r => new DO_BusinessLocation
+                        {
+                            BusinessKey = r.f.BusinessKey,
+                            LocationDescription = r.f.BusinessName + "-" + r.f.LocationDescription
+                        }).ToListAsync();
+
+                    return await bk;
                 }
             }
             catch (Exception ex)

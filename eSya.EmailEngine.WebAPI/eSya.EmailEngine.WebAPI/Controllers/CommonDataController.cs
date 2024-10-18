@@ -47,5 +47,12 @@ namespace eSya.EmailEngine.WebAPI.Controllers
             var ds = await _commondataRepository.GetApplicationCodesByCodeType(codeType);
             return Ok(ds);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetBusinessKeyByEmailIntegration()
+        {
+            var ds = await _commondataRepository.GetBusinessKeyByEmailIntegration();
+            return Ok(ds);
+        }
     }
 }
