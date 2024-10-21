@@ -23,6 +23,7 @@ namespace eSya.EmailEngine.IF
         #endregion Email Variable
 
         #region SMS Information
+        Task<List<DO_EMailTEvent>> GetTriggerEvent();
         Task<List<DO_Forms>> GetExistingFormsFromEmailHeader();
         Task<List<DO_EmailHeader>> GetEmailHeaderInformationByFormId(int formId);
 

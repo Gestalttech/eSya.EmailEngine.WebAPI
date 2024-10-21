@@ -10,8 +10,8 @@ namespace eSya.EmailEngine.IF
     public interface ICommonDataRepository
     {
         Task<List<DO_BusinessLocation>> GetBusinessKey();
-
         Task<List<DO_Forms>> GetFormDetails();
+        Task<List<DO_Forms>> GetFormDetailsbyBusinessKey(int businesskey);
 
         Task<List<DO_ApplicationCodes>> GetApplicationCodesByCodeType(int codeType);
 

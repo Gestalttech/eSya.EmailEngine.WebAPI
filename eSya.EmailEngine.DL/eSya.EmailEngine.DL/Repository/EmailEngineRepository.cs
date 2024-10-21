@@ -79,13 +79,13 @@ namespace eSya.EmailEngine.DL.Repository
                         bool is_EmailVariableExist = db.GtEcemavs.Any(a => a.Emavariable.Trim().ToUpper() == obj.Emavariable.Trim().ToUpper());
                         if (is_EmailVariableExist)
                         {
-                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0113", Message = string.Format(_localizer[name: "W0113"]) };
+                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0072", Message = string.Format(_localizer[name: "W0072"]) };
                         }
 
                         bool is_EmailComponentExist = db.GtEcemavs.Any(a => a.Emacomponent.Trim().ToUpper() == obj.Emacomponent.Trim().ToUpper());
                         if (is_EmailComponentExist)
                         {
-                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0114", Message = string.Format(_localizer[name: "W0114"]) };
+                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0073", Message = string.Format(_localizer[name: "W0073"]) };
                         }
 
                         var em_sv = new GtEcemav
@@ -133,13 +133,13 @@ namespace eSya.EmailEngine.DL.Repository
                                 && w.Emavariable != obj.Emavariable).FirstOrDefault();
                         if (is_EmailComponentExist != null)
                         {
-                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0114", Message = string.Format(_localizer[name: "W0114"]) };
+                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0073", Message = string.Format(_localizer[name: "W0073"]) };
                         }
 
                         GtEcemav em_sv = db.GtEcemavs.Where(w => w.Emavariable == obj.Emavariable).FirstOrDefault();
                         if (em_sv == null)
                         {
-                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0115", Message = string.Format(_localizer[name: "W0115"]) };
+                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0074", Message = string.Format(_localizer[name: "W0074"]) };
                         }
 
                         em_sv.Emacomponent = obj.Emacomponent;
@@ -177,7 +177,7 @@ namespace eSya.EmailEngine.DL.Repository
                         GtEcemav email_var = db.GtEcemavs.Where(w => w.Emavariable.Trim().ToUpper().Replace(" ", "") == Emavariable.Trim().ToUpper().Replace(" ", "")).FirstOrDefault();
                         if (email_var == null)
                         {
-                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0115", Message = string.Format(_localizer[name: "W0115"]) };
+                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0074", Message = string.Format(_localizer[name: "W0074"]) };
                         }
 
                         email_var.ActiveStatus = status;
@@ -207,6 +207,29 @@ namespace eSya.EmailEngine.DL.Repository
         #endregion Email Variable
 
         #region Email Template
+        public async Task<List<DO_EMailTEvent>> GetTriggerEvent()
+        {
+            try
+            {
+                using (var db = new eSyaEnterprise())
+                {
+                    var ds = db.GtEcsmsts
+                        .Where(w => w.ActiveStatus)
+                         .Select(r => new DO_EMailTEvent
+                         {
+                             TEventID = r.TeventId,
+                             TEventDesc = r.TeventDesc,
+                             ActiveStatus = r.ActiveStatus
+                         }).ToListAsync();
+
+                    return await ds;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public async Task<List<DO_Forms>> GetExistingFormsFromEmailHeader()
         {
             try
@@ -247,6 +270,7 @@ namespace eSya.EmailEngine.DL.Repository
                            EmailSubject = r.EmailSubject,
                            EmailBody = r.EmailBody,
                            IsAttachmentReqd = r.IsAttachmentReqd,
+                           TeventId=r.TeventId,
                            ActiveStatus = r.ActiveStatus
                        }).OrderBy(o => o.EmailTempid).ToListAsync();
 
@@ -275,6 +299,7 @@ namespace eSya.EmailEngine.DL.Repository
                              EmailSubject = r.EmailSubject,
                              EmailBody = r.EmailBody,
                              IsVariable = r.IsVariable,
+                             TeventId=r.TeventId,
                              IsAttachmentReqd = r.IsAttachmentReqd,
                              ActiveStatus = r.ActiveStatus,
                              //l_EmailParameter = r.GtEcemads.Select(p => new DO_eSyaParameter
@@ -310,7 +335,7 @@ namespace eSya.EmailEngine.DL.Repository
                         bool is_SMSDescExist = db.GtEcemahs.Any(a => a.EmailTempDesc.Trim().ToUpper() == obj.EmailTempDesc.Trim().ToUpper());
                         if (is_SMSDescExist)
                         {
-                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0116", Message = string.Format(_localizer[name: "W0116"]) };
+                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0071", Message = string.Format(_localizer[name: "W0071"]) };
                         }
 
                         var emaiIdNumber = db.GtEcemahs.Where(w => w.FormId == obj.FormId).Count();
@@ -325,6 +350,7 @@ namespace eSya.EmailEngine.DL.Repository
                             EmailSubject = obj.EmailSubject,
                             EmailBody = obj.EmailBody,
                             IsVariable = obj.IsVariable,
+                            TeventId=obj.TeventId,
                             IsAttachmentReqd = obj.IsAttachmentReqd,
                             ActiveStatus = obj.ActiveStatus,
                             CreatedBy = obj.UserID,
@@ -381,13 +407,13 @@ namespace eSya.EmailEngine.DL.Repository
                                 && w.EmailTempId != obj.EmailTempid && w.FormId == obj.FormId).FirstOrDefault();
                         if (is_SMSComponentExist != null)
                         {
-                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0116", Message = string.Format(_localizer[name: "W0116"]) };
+                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0071", Message = string.Format(_localizer[name: "W0071"]) };
                         }
 
                         GtEcemah sm_sh = db.GtEcemahs.Where(w => w.EmailTempId == obj.EmailTempid).FirstOrDefault();
                         if (sm_sh == null)
                         {
-                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0117", Message = string.Format(_localizer[name: "W0117"]) };
+                            return new DO_ReturnParameter() { Status = false, StatusCode = "W0070", Message = string.Format(_localizer[name: "W0070"]) };
                         }
 
                         sm_sh.EmailType = obj.EmailType;
@@ -395,6 +421,7 @@ namespace eSya.EmailEngine.DL.Repository
                         sm_sh.EmailSubject = obj.EmailSubject;
                         sm_sh.EmailBody = obj.EmailBody;
                         sm_sh.IsVariable = obj.IsVariable;
+                        sm_sh.TeventId=obj.TeventId;
                         sm_sh.IsAttachmentReqd = obj.IsAttachmentReqd;
                         sm_sh.ActiveStatus = obj.ActiveStatus;
                         sm_sh.ModifiedBy = obj.UserID;
@@ -448,6 +475,101 @@ namespace eSya.EmailEngine.DL.Repository
             }
         }
         #endregion Email Template
+
+        #region Manage Email Location Wise
+
+        public async Task<List<DO_EmailHeader>> GetEmailInformationFormLocationWise(int businessKey, int formId)
+        {
+            try
+            {
+                using (var db = new eSyaEnterprise())
+                {
+
+                    var ds = await db.GtEcemahs
+                       .Where(w => w.FormId == formId)
+                       .Select(r => new DO_EmailHeader
+                       {
+                           EmailTempid = r.EmailTempId,
+                           EmailTempDesc = r.EmailTempDesc,
+                           ActiveStatus = r.ActiveStatus,
+                           FormId = r.FormId,
+                       }).OrderBy(o => o.EmailTempid).ToListAsync();
+
+                    foreach (var obj in ds)
+                    {
+                        GtEcemlo pf = db.GtEcemlos.Where(x => x.BusinessKey == businessKey && x.FormId == obj.FormId && x.EmailTempId == obj.EmailTempid).FirstOrDefault();
+                        if (pf != null)
+                        {
+                            obj.ActiveStatus = pf.ActiveStatus;
+                        }
+                        else
+                        {
+                            obj.ActiveStatus = false;
+
+                        }
+                    }
+                    return ds;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<DO_ReturnParameter> InsertOrUpdateEmailInformationFLW(List<DO_BusinessFormEmailLink> obj)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (var email_loc in obj)
+                        {
+                            GtEcemlo Emailloc = db.GtEcemlos.Where(x => x.BusinessKey == email_loc.BusinessKey && x.FormId == email_loc.FormId && x.EmailTempId == email_loc.EmailTempId).FirstOrDefault();
+                            if (Emailloc != null)
+                            {
+
+                                Emailloc.ActiveStatus = email_loc.ActiveStatus;
+                                Emailloc.ModifiedBy = email_loc.UserID;
+                                Emailloc.ModifiedOn = System.DateTime.Now;
+                                Emailloc.ModifiedTerminal = email_loc.TerminalID;
+                            }
+                            else
+                            {
+                                var Emailloc1 = new GtEcemlo
+                                {
+                                    BusinessKey = email_loc.BusinessKey,
+                                    FormId = email_loc.FormId,
+                                    EmailTempId = email_loc.EmailTempId,
+                                    ActiveStatus = email_loc.ActiveStatus,
+                                    CreatedBy = email_loc.UserID,
+                                    CreatedOn = System.DateTime.Now,
+                                    CreatedTerminal = email_loc.TerminalID
+                                };
+                                db.GtEcemlos.Add(Emailloc1);
+                            }
+                            await db.SaveChangesAsync();
+                        }
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, StatusCode = "S0002", Message = string.Format(_localizer[name: "S0002"]) };
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        dbContext.Rollback();
+                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+        #endregion Manage Email Location Wise
 
         #region Email Recipient
 
@@ -601,99 +723,6 @@ namespace eSya.EmailEngine.DL.Repository
 
         #endregion SMS Recipient
 
-        #region Manage Email Location Wise
-
-        public async Task<List<DO_EmailHeader>> GetEmailInformationFormLocationWise(int businessKey, int formId)
-        {
-            try
-            {
-                using (var db = new eSyaEnterprise())
-                {
-
-                    var ds = await db.GtEcemahs
-                       .Where(w => w.FormId == formId)
-                       .Select(r => new DO_EmailHeader
-                       {
-                           EmailTempid = r.EmailTempId,
-                           EmailTempDesc = r.EmailTempDesc,
-                           ActiveStatus = r.ActiveStatus,
-                           FormId = r.FormId,
-                       }).OrderBy(o => o.EmailTempid).ToListAsync();
-
-                    foreach (var obj in ds)
-                    {
-                        GtEcemlo pf = db.GtEcemlos.Where(x => x.BusinessKey == businessKey && x.FormId == obj.FormId && x.EmailTempId==obj.EmailTempid).FirstOrDefault();
-                        if (pf != null)
-                        {
-                            obj.ActiveStatus = pf.ActiveStatus;
-                        }
-                        else
-                        {
-                            obj.ActiveStatus = false;
-
-                        }
-                    }
-                    return ds;
-
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public async Task<DO_ReturnParameter> InsertOrUpdateEmailInformationFLW(List<DO_BusinessFormEmailLink> obj)
-        {
-            using (var db = new eSyaEnterprise())
-            {
-                using (var dbContext = db.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        foreach (var email_loc in obj)
-                        {
-                            GtEcemlo Emailloc = db.GtEcemlos.Where(x => x.BusinessKey == email_loc.BusinessKey && x.FormId == email_loc.FormId && x.EmailTempId == email_loc.EmailTempId).FirstOrDefault();
-                            if (Emailloc != null)
-                            {
-                                
-                                Emailloc.ActiveStatus = email_loc.ActiveStatus;
-                                Emailloc.ModifiedBy = email_loc.UserID;
-                                Emailloc.ModifiedOn = System.DateTime.Now;
-                                Emailloc.ModifiedTerminal = email_loc.TerminalID;
-                            }
-                            else
-                            {
-                                var Emailloc1 = new GtEcemlo
-                                {
-                                    BusinessKey = email_loc.BusinessKey,
-                                    FormId = email_loc.FormId,
-                                    EmailTempId = email_loc.EmailTempId,
-                                    ActiveStatus = email_loc.ActiveStatus,
-                                    CreatedBy = email_loc.UserID,
-                                    CreatedOn = System.DateTime.Now,
-                                    CreatedTerminal = email_loc.TerminalID
-                                };
-                                db.GtEcemlos.Add(Emailloc1);
-                            }
-                            await db.SaveChangesAsync();
-                        }
-                        dbContext.Commit();
-                        return new DO_ReturnParameter() { Status = true, StatusCode = "S0002", Message = string.Format(_localizer[name: "S0002"]) };
-                    }
-                    catch (DbUpdateException ex)
-                    {
-                        dbContext.Rollback();
-                        throw new Exception(CommonMethod.GetValidationMessageFromException(ex));
-                    }
-                    catch (Exception ex)
-                    {
-                        dbContext.Rollback();
-                        throw ex;
-                    }
-                }
-            }
-        }
-        #endregion Manage Email Location Wise
+        
     }
 }

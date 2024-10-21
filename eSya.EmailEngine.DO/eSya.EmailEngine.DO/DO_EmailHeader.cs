@@ -13,6 +13,7 @@ namespace eSya.EmailEngine.DO
         public string EmailSubject { get; set; }
         public string EmailBody { get; set; }
         public bool IsVariable { get; set; }
+        public int TeventId { get; set; }
         public bool IsAttachmentReqd { get; set; }
         public bool ActiveStatus { get; set; }
         public int UserID { get; set; }
@@ -42,5 +43,13 @@ namespace eSya.EmailEngine.DO
         public int UserID { get; set; }
         public string FormId1 { get; set; }
         public string TerminalID { get; set; }
+    }
+
+    public class DO_EMailTEvent
+    {
+        public int TEventID { get; set; }
+        public string TEventDesc { get; set; }
+        public bool ActiveStatus { get; set; }
+
     }
 }

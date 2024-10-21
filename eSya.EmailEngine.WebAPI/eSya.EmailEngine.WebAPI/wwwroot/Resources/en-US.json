@@ -1,6 +1,10 @@
 {
   "W0069": "Email Template Id is already Exist for this Email ID and selected location",
   "W0070": "Email Template Id not Exist",
+  "W0071": "Email Template Description already Exist",
+  "W0072": "Email Variable already Exist",
+  "W0073": "Email Component already Exist",
+  "W0074": "Email Variable not Exist",
 
 
   "S0001": "Saved Sucessfully",

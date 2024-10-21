@@ -15,6 +15,8 @@ namespace eSya.SMSEngine.WebAPI.Controllers
             _EmailEngineRepository = emailEngineRepository;
         }
 
+       
+
         /// <summary>
         /// Get Email Variable Information.
         /// UI Reffered - Email Variable
@@ -76,7 +78,17 @@ namespace eSya.SMSEngine.WebAPI.Controllers
             var msg = await _EmailEngineRepository.ActiveOrDeActiveEmailVariable(status, Emavariable);
             return Ok(msg);
         }
-
+        /// <summary>
+        /// Get Trigger Events.
+        /// UI Reffered - Email Information
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> GetTriggerEvent()
+        {
+            var sm_sv = await _EmailEngineRepository.GetTriggerEvent();
+            return Ok(sm_sv);
+        }
         /// <summary>
         /// Get Existing Forms from Email Header.
         /// UI Reffered - Email Information
@@ -139,6 +151,7 @@ namespace eSya.SMSEngine.WebAPI.Controllers
             return Ok(msg);
 
         }
+
         #region Email Recipient
         [HttpGet]
         public async Task<IActionResult> GetEmailHeaderForRecipientByFormIdandParamId(int formId, int parameterId)
@@ -167,6 +180,7 @@ namespace eSya.SMSEngine.WebAPI.Controllers
 
         }
         #endregion
+
         #region Manage Email Location Wise
         [HttpGet]
         public async Task<IActionResult> GetEmailInformationFormLocationWise(int businessKey, int formId)

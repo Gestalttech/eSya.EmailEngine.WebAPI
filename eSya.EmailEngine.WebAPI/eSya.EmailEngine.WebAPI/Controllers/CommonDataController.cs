@@ -35,6 +35,12 @@ namespace eSya.EmailEngine.WebAPI.Controllers
             var ds = await _commondataRepository.GetFormDetails();
             return Ok(ds);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetFormDetailsbyBusinessKey(int businesskey)
+        {
+            var ds = await _commondataRepository.GetFormDetailsbyBusinessKey(businesskey);
+            return Ok(ds);
+        }
 
         /// <summary>
         /// Get Application Codes.
