@@ -28,7 +28,7 @@ namespace eSya.EmailEngine.DO
         public string? LoginID { get; set; }
         public int EmailType { get; set; }
         public int FormID { get; set; }
-        public string Emailid { get; set; }
+        public string? Emailid { get; set; }
         public int TEventID { get; set; }
         public string? OTP { get; set; }
 
