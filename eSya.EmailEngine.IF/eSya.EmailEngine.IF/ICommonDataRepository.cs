@@ -16,5 +16,7 @@ namespace eSya.EmailEngine.IF
         Task<List<DO_ApplicationCodes>> GetApplicationCodesByCodeType(int codeType);
 
         Task<List<DO_BusinessLocation>> GetBusinessKeyByEmailIntegration();
+
+        Task<bool> GetLocationEmailApplicable(int BusinessKey);
     }
 }

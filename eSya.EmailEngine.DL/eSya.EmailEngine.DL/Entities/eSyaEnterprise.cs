@@ -8,7 +8,6 @@ namespace eSya.EmailEngine.DL.Entities
     public partial class eSyaEnterprise : DbContext
     {
         public static string _connString = "";
-
         public eSyaEnterprise()
         {
         }
@@ -21,6 +20,7 @@ namespace eSya.EmailEngine.DL.Entities
         public virtual DbSet<GtEcapcd> GtEcapcds { get; set; } = null!;
         public virtual DbSet<GtEcbsln> GtEcbslns { get; set; } = null!;
         public virtual DbSet<GtEcbsmn> GtEcbsmns { get; set; } = null!;
+        public virtual DbSet<GtEcem91> GtEcem91s { get; set; } = null!;
         public virtual DbSet<GtEcemad> GtEcemads { get; set; } = null!;
         public virtual DbSet<GtEcemah> GtEcemahs { get; set; } = null!;
         public virtual DbSet<GtEcemar> GtEcemars { get; set; } = null!;
@@ -31,6 +31,7 @@ namespace eSya.EmailEngine.DL.Entities
         public virtual DbSet<GtEcmnfl> GtEcmnfls { get; set; } = null!;
         public virtual DbSet<GtEcpabl> GtEcpabls { get; set; } = null!;
         public virtual DbSet<GtEcsmst> GtEcsmsts { get; set; } = null!;
+        public virtual DbSet<GtEuusm> GtEuusms { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -124,6 +125,40 @@ namespace eSya.EmailEngine.DL.Entities
                 entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
 
                 entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<GtEcem91>(entity =>
+            {
+                entity.HasKey(e => new { e.BusinessKey, e.EmailType, e.OutgoingMailServer });
+
+                entity.ToTable("GT_ECEM91");
+
+                entity.Property(e => e.OutgoingMailServer)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.PassKey).HasMaxLength(2000);
+
+                entity.Property(e => e.Password).HasMaxLength(2000);
+
+                entity.Property(e => e.SenderEmailId)
+                    .HasMaxLength(2000)
+                    .HasColumnName("SenderEmailID");
+
+                entity.Property(e => e.UserName).HasMaxLength(2000);
             });
 
             modelBuilder.Entity<GtEcemad>(entity =>
@@ -415,6 +450,63 @@ namespace eSya.EmailEngine.DL.Entities
                 entity.Property(e => e.TeventDesc)
                     .HasMaxLength(150)
                     .HasColumnName("TEventDesc");
+            });
+
+            modelBuilder.Entity<GtEuusm>(entity =>
+            {
+                entity.HasKey(e => e.UserId);
+
+                entity.ToTable("GT_EUUSMS");
+
+                entity.Property(e => e.UserId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("UserID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.DeactivationReason).HasMaxLength(50);
+
+                entity.Property(e => e.EMailId)
+                    .HasMaxLength(50)
+                    .HasColumnName("eMailID");
+
+                entity.Property(e => e.FirstUseByUser).HasColumnType("datetime");
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.LastActivityDate).HasColumnType("datetime");
+
+                entity.Property(e => e.LastPasswordUpdatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.LoginAttemptDate).HasColumnType("datetime");
+
+                entity.Property(e => e.LoginDesc).HasMaxLength(50);
+
+                entity.Property(e => e.LoginId)
+                    .HasMaxLength(20)
+                    .HasColumnName("LoginID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.PhotoUrl)
+                    .HasMaxLength(150)
+                    .IsUnicode(false)
+                    .HasColumnName("PhotoURL");
+
+                entity.Property(e => e.RejectionReason).HasMaxLength(250);
+
+                entity.Property(e => e.UserAuthenticatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.UserCreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.UserDeactivatedOn).HasColumnType("datetime");
             });
 
             OnModelCreatingPartial(modelBuilder);

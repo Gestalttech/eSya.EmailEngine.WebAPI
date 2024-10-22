@@ -7,12 +7,12 @@ using eSya.EmailEngine.DL.Localization;
 using System.Globalization;
 using eSya.EmailEngine.IF;
 using eSya.EmailEngine.DL.Repository;
+using eSya.EmailEngine.WebAPI.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 DL_EmailEngine.eSyaEnterprise._connString = builder.Configuration.GetConnectionString("dbConn_eSyaEnterprise");
 
 builder.Services.AddControllersWithViews(options =>
@@ -52,6 +52,8 @@ builder.Services.AddLocalization();
 builder.Services.AddScoped<ICommonDataRepository, CommonDataRepository>();
 builder.Services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
 builder.Services.AddScoped<IEmailEngineRepository, EmailEngineRepository>();
+builder.Services.AddScoped<IEmailStatementRepository, EmailStatementRepository>();
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 
 builder.Services.AddControllers();

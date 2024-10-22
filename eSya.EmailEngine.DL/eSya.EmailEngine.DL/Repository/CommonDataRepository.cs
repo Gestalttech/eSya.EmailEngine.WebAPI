@@ -149,5 +149,16 @@ namespace eSya.EmailEngine.DL.Repository
                 throw ex;
             }
         }
+
+        public async Task<bool> GetLocationEmailApplicable(int BusinessKey)
+        {
+            using (var db = new eSyaEnterprise())
+            {
+                var lg = await db.GtEcpabls
+                    .Where(w => w.BusinessKey == BusinessKey && w.ParameterId == ParameterIdValues.Location_isEmailIntegration && w.ActiveStatus)
+                    .Select(s => s.ParmAction).FirstOrDefaultAsync();
+                return lg;
+            }
+        }
     }
 }
