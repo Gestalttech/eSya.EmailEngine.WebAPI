@@ -28,7 +28,7 @@ namespace eSya.EmailEngine.WebAPI.Controllers
 
             var ds = await _CommonDataRepository.GetLocationEmailApplicable(sp_obj.BusinessKey);
             var mail_SP = await _EmailStatementRepository.EmailProviderCredential(sp_obj.BusinessKey, sp_obj.EmailType);
-            if (ds && mail_SP.SenderEmailId != null)
+            if (ds == true && mail_SP.SenderEmailId != null)
             {
                 var fs = await _EmailStatementRepository.GetEmailonSaveClick(sp_obj);
                 string messageText = "";
@@ -50,7 +50,7 @@ namespace eSya.EmailEngine.WebAPI.Controllers
                         emailModal.CCEmail = null;
                         emailModal.Subject = s.EmailSubject;
                         emailModal.Message = messageText;
-                        
+
                         if (!string.IsNullOrEmpty(p.Emailid))
                         {
                             var rp = await _EmailSender.SendEmail(emailModal, mail_SP);

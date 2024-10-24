@@ -8,6 +8,7 @@ namespace eSya.EmailEngine.DL.Entities
     public partial class eSyaEnterprise : DbContext
     {
         public static string _connString = "";
+
         public eSyaEnterprise()
         {
         }
@@ -24,13 +25,13 @@ namespace eSya.EmailEngine.DL.Entities
         public virtual DbSet<GtEcemad> GtEcemads { get; set; } = null!;
         public virtual DbSet<GtEcemah> GtEcemahs { get; set; } = null!;
         public virtual DbSet<GtEcemar> GtEcemars { get; set; } = null!;
-        public virtual DbSet<GtEcemav> GtEcemavs { get; set; } = null!;
         public virtual DbSet<GtEcemlo> GtEcemlos { get; set; } = null!;
         public virtual DbSet<GtEcfmfd> GtEcfmfds { get; set; } = null!;
         public virtual DbSet<GtEcfmpa> GtEcfmpas { get; set; } = null!;
         public virtual DbSet<GtEcmnfl> GtEcmnfls { get; set; } = null!;
         public virtual DbSet<GtEcpabl> GtEcpabls { get; set; } = null!;
         public virtual DbSet<GtEcsmst> GtEcsmsts { get; set; } = null!;
+        public virtual DbSet<GtEcsmsv> GtEcsmsvs { get; set; } = null!;
         public virtual DbSet<GtEuusm> GtEuusms { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -250,36 +251,6 @@ namespace eSya.EmailEngine.DL.Entities
                 entity.Property(e => e.Remarks).HasMaxLength(25);
             });
 
-            modelBuilder.Entity<GtEcemav>(entity =>
-            {
-                entity.HasKey(e => e.Emavariable);
-
-                entity.ToTable("GT_ECEMAV");
-
-                entity.Property(e => e.Emavariable)
-                    .HasMaxLength(6)
-                    .IsUnicode(false)
-                    .HasColumnName("EMAVariable");
-
-                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
-
-                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
-
-                entity.Property(e => e.Emacomponent)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("EMAComponent");
-
-                entity.Property(e => e.FormId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("FormID");
-
-                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
-
-                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
-            });
-
             modelBuilder.Entity<GtEcemlo>(entity =>
             {
                 entity.HasKey(e => new { e.BusinessKey, e.FormId, e.EmailTempId });
@@ -450,6 +421,36 @@ namespace eSya.EmailEngine.DL.Entities
                 entity.Property(e => e.TeventDesc)
                     .HasMaxLength(150)
                     .HasColumnName("TEventDesc");
+            });
+
+            modelBuilder.Entity<GtEcsmsv>(entity =>
+            {
+                entity.HasKey(e => e.Smsvariable);
+
+                entity.ToTable("GT_ECSMSV");
+
+                entity.Property(e => e.Smsvariable)
+                    .HasMaxLength(6)
+                    .IsUnicode(false)
+                    .HasColumnName("SMSVariable");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.Smscomponent)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("SMSComponent");
             });
 
             modelBuilder.Entity<GtEuusm>(entity =>

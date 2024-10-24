@@ -8,23 +8,26 @@ namespace eSya.EmailEngine.IF
 {
     public interface IEmailEngineRepository
     {
-        #region Email Variable
+        #region Email Variable need to shift to product setup
 
-        Task<List<DO_EmailVariable>> GetEmailVariableInformation();
+        //Task<List<DO_EmailVariable>> GetEmailVariableInformation();
 
-        Task<List<DO_EmailVariable>> GetActiveEmailVariableInformation();
+        //Task<List<DO_EmailVariable>> GetActiveEmailVariableInformation();
 
-        Task<DO_ReturnParameter> InsertIntoEmailVariable(DO_EmailVariable obj);
+        //Task<DO_ReturnParameter> InsertIntoEmailVariable(DO_EmailVariable obj);
 
-        Task<DO_ReturnParameter> UpdateEmailVariable(DO_EmailVariable obj);
+        //Task<DO_ReturnParameter> UpdateEmailVariable(DO_EmailVariable obj);
 
-        Task<DO_ReturnParameter> ActiveOrDeActiveEmailVariable(bool status, string Emavariable);
+        //Task<DO_ReturnParameter> ActiveOrDeActiveEmailVariable(bool status, string Emavariable);
 
         #endregion Email Variable
 
-        #region SMS Information
+        #region SMS Template
         Task<List<DO_EMailTEvent>> GetTriggerEvent();
         Task<List<DO_Forms>> GetExistingFormsFromEmailHeader();
+        Task<int> GetMaxSequenceNumberforEmailbyTriggerEventID(int TeventID);
+
+        Task<List<DO_EmailVariable>> GetActiveEmailVariableInformation();
         Task<List<DO_EmailHeader>> GetEmailHeaderInformationByFormId(int formId);
 
         Task<DO_EmailHeader> GetEmailHeaderInformationByEmailId(string emailTempId);
@@ -41,6 +44,7 @@ namespace eSya.EmailEngine.IF
         Task<DO_ReturnParameter> InsertIntoEmailRecipient(DO_EmailRecipient obj);
         Task<DO_ReturnParameter> UpdateEmailRecipient(DO_EmailRecipient obj);
         #endregion
+
         #region Manage Email Location Wise
         Task<List<DO_EmailHeader>> GetEmailInformationFormLocationWise(int businessKey, int formId);
         Task<DO_ReturnParameter> InsertOrUpdateEmailInformationFLW(List<DO_BusinessFormEmailLink> obj);

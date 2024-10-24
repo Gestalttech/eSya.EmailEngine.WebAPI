@@ -15,69 +15,72 @@ namespace eSya.SMSEngine.WebAPI.Controllers
             _EmailEngineRepository = emailEngineRepository;
         }
 
-       
+        #region Email Variable need to shift to product setup
 
-        /// <summary>
-        /// Get Email Variable Information.
-        /// UI Reffered - Email Variable
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<IActionResult> GetEmailVariableInformation()
-        {
-            var sm_sv = await _EmailEngineRepository.GetEmailVariableInformation();
-            return Ok(sm_sv);
-        }
+        ///// <summary>
+        ///// Get Email Variable Information.
+        ///// UI Reffered - Email Variable
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public async Task<IActionResult> GetEmailVariableInformation()
+        //{
+        //    var sm_sv = await _EmailEngineRepository.GetEmailVariableInformation();
+        //    return Ok(sm_sv);
+        //}
 
-        /// <summary>
-        /// Get Active Email Variable Information.
-        /// UI Reffered - Email Information
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<IActionResult> GetActiveEmailVariableInformation()
-        {
-            var sm_sv = await _EmailEngineRepository.GetActiveEmailVariableInformation();
-            return Ok(sm_sv);
-        }
+        ///// <summary>
+        ///// Get Active Email Variable Information.
+        ///// UI Reffered - Email Information
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public async Task<IActionResult> GetActiveEmailVariableInformation()
+        //{
+        //    var sm_sv = await _EmailEngineRepository.GetActiveEmailVariableInformation();
+        //    return Ok(sm_sv);
+        //}
 
 
-        /// <summary>
-        /// Insert into Email Variable .
-        /// UI Reffered - Email Variable
-        /// </summary>
-        [HttpPost]
-        public async Task<IActionResult> InsertIntoEmailVariable(DO_EmailVariable obj)
-        {
-            var msg = await _EmailEngineRepository.InsertIntoEmailVariable(obj);
-            return Ok(msg);
+        ///// <summary>
+        ///// Insert into Email Variable .
+        ///// UI Reffered - Email Variable
+        ///// </summary>
+        //[HttpPost]
+        //public async Task<IActionResult> InsertIntoEmailVariable(DO_EmailVariable obj)
+        //{
+        //    var msg = await _EmailEngineRepository.InsertIntoEmailVariable(obj);
+        //    return Ok(msg);
 
-        }
+        //}
 
-        /// <summary>
-        /// Update Email Variable .
-        /// UI Reffered - Email Variable
-        /// </summary>
-        [HttpPost]
-        public async Task<IActionResult> UpdateEmailVariable(DO_EmailVariable obj)
-        {
-            var msg = await _EmailEngineRepository.UpdateEmailVariable(obj);
-            return Ok(msg);
+        ///// <summary>
+        ///// Update Email Variable .
+        ///// UI Reffered - Email Variable
+        ///// </summary>
+        //[HttpPost]
+        //public async Task<IActionResult> UpdateEmailVariable(DO_EmailVariable obj)
+        //{
+        //    var msg = await _EmailEngineRepository.UpdateEmailVariable(obj);
+        //    return Ok(msg);
 
-        }
+        //}
 
-        /// <summary>
-        /// Active Or De Active Email Variable.
-        /// UI Reffered - Email Variable
-        /// </summary>
-        /// <param name="status-smsvariable"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<IActionResult> ActiveOrDeActiveEmailVariable(bool status, string Emavariable)
-        {
-            var msg = await _EmailEngineRepository.ActiveOrDeActiveEmailVariable(status, Emavariable);
-            return Ok(msg);
-        }
+        ///// <summary>
+        ///// Active Or De Active Email Variable.
+        ///// UI Reffered - Email Variable
+        ///// </summary>
+        ///// <param name="status-smsvariable"></param>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public async Task<IActionResult> ActiveOrDeActiveEmailVariable(bool status, string Emavariable)
+        //{
+        //    var msg = await _EmailEngineRepository.ActiveOrDeActiveEmailVariable(status, Emavariable);
+        //    return Ok(msg);
+        //}
+        #endregion Email Variable
+
+        #region Email Template
         /// <summary>
         /// Get Trigger Events.
         /// UI Reffered - Email Information
@@ -99,6 +102,29 @@ namespace eSya.SMSEngine.WebAPI.Controllers
         {
             var ex_forms = await _EmailEngineRepository.GetExistingFormsFromEmailHeader();
             return Ok(ex_forms);
+        } 
+          /// <summary>
+          /// Get Existing Forms from Email Header.
+          /// UI Reffered - Email Information
+          /// </summary>
+          /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> GetMaxSequenceNumberforEmailbyTriggerEventID(int TeventID)
+        {
+            var ex_forms = await _EmailEngineRepository.GetMaxSequenceNumberforEmailbyTriggerEventID(TeventID);
+            return Ok(ex_forms);
+        }
+
+        /// <summary>
+        /// Get Active Email Variable Information.
+        /// UI Reffered - Email Template
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> GetActiveEmailVariableInformation()
+        {
+            var sm_sv = await _EmailEngineRepository.GetActiveEmailVariableInformation();
+            return Ok(sm_sv);
         }
 
         /// <summary>
@@ -151,6 +177,7 @@ namespace eSya.SMSEngine.WebAPI.Controllers
             return Ok(msg);
 
         }
+        #endregion
 
         #region Email Recipient
         [HttpGet]

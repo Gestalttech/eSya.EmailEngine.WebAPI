@@ -3,11 +3,10 @@ using System.Collections.Generic;
 
 namespace eSya.EmailEngine.DL.Entities
 {
-    public partial class GtEcsmst
+    public partial class GtEcsmsv
     {
-        public int TeventId { get; set; }
-        public string TeventDesc { get; set; } = null!;
-        public int MaxSequenceNumber { get; set; }
+        public string Smsvariable { get; set; } = null!;
+        public string Smscomponent { get; set; } = null!;
         public string FormId { get; set; } = null!;
         public bool ActiveStatus { get; set; }
         public int CreatedBy { get; set; }

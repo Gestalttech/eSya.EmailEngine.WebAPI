@@ -15,6 +15,7 @@ namespace eSya.EmailEngine.DO
         public bool IsVariable { get; set; }
         public int TeventId { get; set; }
         public bool IsAttachmentReqd { get; set; }
+        public int SequenceNumber { get; set; }
         public bool ActiveStatus { get; set; }
         public int UserID { get; set; }
         public string TerminalID { get; set; }
