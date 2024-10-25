@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("eSya.EmailEngine.DO")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+14a29fc6f7a81f2bf02223418f10a845a6688dde")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fdc39cfc1dd56541e38d29d95e30963628b331df")]
 [assembly: System.Reflection.AssemblyProductAttribute("eSya.EmailEngine.DO")]
 [assembly: System.Reflection.AssemblyTitleAttribute("eSya.EmailEngine.DO")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

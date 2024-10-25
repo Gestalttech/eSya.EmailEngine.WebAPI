@@ -67,7 +67,7 @@ namespace eSya.EmailEngine.DL.Repository
                            u => u.FormId,
                            b => b.FormId,
                            (u, b) => new { u, b })
-                        .Where(w => w.u.FormId == sp.FormID && w.u.TeventId == sp.TEventID
+                        .Where(w => w.u.FormId == sp.FormID && w.u.TeventId == sp.TEventID && w.u.SequenceNumber == sp.SequenceNumber
                                     && w.u.ActiveStatus == true && w.b.BusinessKey == sp.BusinessKey)
                         .Select(r => new DO_EmailStatement
                         {
